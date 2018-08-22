@@ -48,6 +48,7 @@ namespace TheKrystalShip.Polly.Handlers
                 .AddSingleton(_commandService)
                 .AddSingleton(_config)
                 .AddManagers()
+                .AddServices()
                 .AddLogger()
                 .BuildServiceProvider();
 
