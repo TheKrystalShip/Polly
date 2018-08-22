@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 using TheKrystalShip.Polly.Managers;
 using TheKrystalShip.Polly.Services;
@@ -20,7 +20,7 @@ namespace TheKrystalShip.Polly.Extensions
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            // Add your managers here
+            // Add your services here
             services.AddSingleton<PollService>();
 
             return services;
