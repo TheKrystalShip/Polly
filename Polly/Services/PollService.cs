@@ -14,8 +14,9 @@ namespace TheKrystalShip.Polly.Services
             _reactions = new List<Emoji>();
             _reactions.Add(new Emoji("👎🏻"));
             _reactions.Add(new Emoji("👍🏻"));
-            _reactions.Add(new Emoji("🤷🏻‍"));
+            _reactions.Add(new Emoji("🤷"));
         }
+        
         public async Task AddReactionsAsync(SocketUserMessage message)
         {
             foreach (Emoji reaction in _reactions)
