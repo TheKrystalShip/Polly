@@ -1,0 +1,7 @@
+﻿{
+  "Bot": {
+    "Name": "Polly",
+    "Token": "https://discordapp.com/developers/applications/me",
+    "PollChannel": ""
+  }
+}
