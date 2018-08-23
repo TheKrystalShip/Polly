@@ -7,9 +7,6 @@ using TheKrystalShip.Logging;
 
 namespace TheKrystalShip.Polly.Managers
 {
-    /// <summary>
-    /// Hooks into the client events
-    /// </summary>
     public class EventManager
     {
         private readonly DiscordSocketClient _client;
