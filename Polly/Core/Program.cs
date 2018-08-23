@@ -9,26 +9,21 @@ using System.Threading.Tasks;
 
 using TheKrystalShip.Polly.Extensions;
 using TheKrystalShip.Polly.Handlers;
+using TheKrystalShip.Polly.Properties;
 
 namespace TheKrystalShip.Polly
 {
     public class Program
     {
-        private static IConfiguration _config;
         private static DiscordSocketClient _client;
         private static CommandHandler _commandHandler;
         private static string _token;
 
         public static async Task Main(string[] args)
         {
-            _config = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Properties"))
-                .AddJsonFile("settings.json", false, true)
-                .Build();
+            Console.Title = Settings.Instance.GetName();
 
-            Console.Title = _config.GetName();
-
-            _token = _config.GetToken();
+            _token = Settings.Instance.GetToken();
 
             _client = new DiscordSocketClient(new DiscordSocketConfig()
                 {
@@ -38,7 +33,7 @@ namespace TheKrystalShip.Polly
                 }
             );
 
-            _commandHandler = new CommandHandler(ref _client, ref _config);
+            _commandHandler = new CommandHandler(ref _client);
 
             await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();

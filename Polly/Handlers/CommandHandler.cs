@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,29 +9,26 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using TheKrystalShip.Polly.Extensions;
-using TheKrystalShip.Polly.Managers;
 using TheKrystalShip.Logging;
 using TheKrystalShip.Logging.Extensions;
+using TheKrystalShip.Polly.Database;
+using TheKrystalShip.Polly.Extensions;
+using TheKrystalShip.Polly.Managers;
+using TheKrystalShip.Polly.Properties;
 using TheKrystalShip.Polly.Services;
 
 namespace TheKrystalShip.Polly.Handlers
 {
-    /// <summary>
-    /// In charge of executing incoming commands from the client
-    /// </summary>
     public class CommandHandler
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commandService;
-        private readonly IConfiguration _config;
         private readonly IServiceProvider _services;
         private readonly ILogger<CommandHandler> _logger;
 
-        public CommandHandler(ref DiscordSocketClient client, ref IConfiguration configuration)
+        public CommandHandler(ref DiscordSocketClient client)
         {
             _client = client;
-            _config = configuration;
 
             _commandService = new CommandService(new CommandServiceConfig()
                 {
@@ -46,9 +43,11 @@ namespace TheKrystalShip.Polly.Handlers
             _services = new ServiceCollection()
                 .AddSingleton(_client)
                 .AddSingleton(_commandService)
-                .AddSingleton(_config)
                 .AddManagers()
                 .AddServices()
+                .AddDbContext<SQLiteContext>(x => {
+                    x.UseSqlite(Settings.Instance.GetConnectionString("SQLite"));
+                })
                 .AddLogger()
                 .BuildServiceProvider();
 
@@ -79,7 +78,7 @@ namespace TheKrystalShip.Polly.Handlers
             if (message is null || message.Author.IsBot)
                 return;
 
-            bool inPollChannel = message.Channel.Id == _config.GetPollChannel();
+            bool inPollChannel = message.Channel.Id == Settings.Instance.GetPollChannel();
 
             if (!inPollChannel)
                 return;
