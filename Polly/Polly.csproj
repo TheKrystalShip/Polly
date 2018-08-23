@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>TheKrystalShip.Polly</RootNamespace>
-    <AssemblyName>TheKrystalShip.Polly</AssemblyName>
+    <AssemblyName>Polly</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
