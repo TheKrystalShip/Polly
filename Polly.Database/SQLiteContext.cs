@@ -11,17 +11,16 @@ namespace TheKrystalShip.Polly.Database
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }
-        private readonly IConfiguration _config;
-        public SQLiteContext(IConfiguration config) : base()
-        {
-            _config = config;
-        }
 
-        public void Migrate() => Database.Migrate();
-
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.UseSqlite(_config.GetConnectionString("SQLite"));
+            builder.Entity<User>()
+                .HasMany(u => u.Messages)
+                .WithOne(m => m.User);
+
+            builder.Entity<Message>()
+                .HasOne(m => m.User)
+                .WithMany(u => u.Messages);
         }
     }
 }
