@@ -32,4 +32,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Polly.Database\Polly.Database.csproj" />
+  </ItemGroup>
+
 </Project>
