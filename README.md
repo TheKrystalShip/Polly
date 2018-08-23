@@ -33,7 +33,7 @@ It's not ment to be used on more than one server (at least for now, might change
 
 ## License
 
-```text
+```
 MIT License
 
 Copyright (c) 2018 TheKrystalShip
