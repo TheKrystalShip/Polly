@@ -34,11 +34,11 @@ namespace TheKrystalShip.Polly.Handlers
             _config = configuration;
 
             _commandService = new CommandService(new CommandServiceConfig()
-            {
-                LogLevel = LogSeverity.Debug,
-                CaseSensitiveCommands = false,
-                DefaultRunMode = RunMode.Async
-            }
+                {
+                    LogLevel = LogSeverity.Debug,
+                    CaseSensitiveCommands = false,
+                    DefaultRunMode = RunMode.Async
+                }
             );
 
             _commandService.AddModulesAsync(Assembly.GetEntryAssembly());
@@ -85,7 +85,7 @@ namespace TheKrystalShip.Polly.Handlers
                 return;
 
             PollService pollService = _services.GetService<PollService>();
-            await pollService.AddReactionsAsync(message);
+            await pollService.CreatePollAsync(message);
         }
     }
 }
