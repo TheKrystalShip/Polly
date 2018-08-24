@@ -22,7 +22,7 @@ namespace TheKrystalShip.Polly.Managers
 
         private Task ClientLog(LogMessage logMessage)
         {
-            _logger.LogInformation(logMessage.Message);
+            _logger.LogInformation(GetType().FullName + $" ({logMessage.Source})", logMessage.Message);
             return Task.CompletedTask;
         }
     }
