@@ -43,7 +43,7 @@ namespace TheKrystalShip.Polly.Services
 
         public async Task AddReactionsAsync(IUserMessage message)
         {
-            foreach (Emoji reaction in _reactions)
+            foreach (IEmote reaction in _reactions)
             {
                 await message.AddReactionAsync(reaction);
             }

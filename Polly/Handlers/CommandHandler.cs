@@ -87,7 +87,8 @@ namespace TheKrystalShip.Polly.Handlers
 
             if (inPollChannel && !hasMention)
             {
-
+                PollService pollService = _services.GetRequiredService<PollService>();
+                await pollService.CreatePollAsync(message);
             }
 
             if (hasMention)
