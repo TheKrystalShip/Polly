@@ -19,6 +19,8 @@ namespace TheKrystalShip.Polly.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddSingleton<PollService>();
+            services.AddSingleton<AdminService>();
+            services.AddSingleton<SettingsService>();
 
             return services;
         }

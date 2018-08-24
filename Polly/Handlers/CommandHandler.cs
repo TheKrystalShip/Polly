@@ -78,13 +78,28 @@ namespace TheKrystalShip.Polly.Handlers
             if (message is null || message.Author.IsBot)
                 return;
 
+            int argPos = 0;
             bool inPollChannel = message.Channel.Id == Settings.Instance.GetPollChannel();
+            bool hasMention = message.HasMentionPrefix(_client.CurrentUser, ref argPos);
 
-            if (!inPollChannel)
+            if (!inPollChannel && !hasMention)
                 return;
 
-            PollService pollService = _services.GetService<PollService>();
-            await pollService.CreatePollAsync(message);
+            if (inPollChannel && !hasMention)
+            {
+
+            }
+
+            if (hasMention)
+            {
+                SocketCommandContext context = new SocketCommandContext(_client, message);
+                IResult result = await _commandService.ExecuteAsync(context, argPos, _services);
+
+                if (!result.IsSuccess)
+                {
+                    _logger.LogError(result.ErrorReason, result.Error.Value.ToString());
+                }
+            }
         }
     }
 }
