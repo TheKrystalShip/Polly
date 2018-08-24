@@ -12,6 +12,7 @@ namespace TheKrystalShip.Polly.Extensions
             services.AddSingleton<EventManager>();
             services.AddSingleton<ChannelManager>();
             services.AddSingleton<EmbedManager>();
+            services.AddSingleton<MessageManager>();
 
             return services;
         }

@@ -45,7 +45,7 @@ namespace TheKrystalShip.Polly.Services
         {
             foreach (IEmote reaction in _reactions)
             {
-                await message.AddReactionAsync(reaction);
+                await message.AddReactionAsync(reaction).ConfigureAwait(false);
             }
         }
     }
