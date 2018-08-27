@@ -7,9 +7,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
+using TheKrystalShip.Configuration;
 using TheKrystalShip.Polly.Extensions;
 using TheKrystalShip.Polly.Handlers;
-using TheKrystalShip.Polly.Properties;
 
 namespace TheKrystalShip.Polly
 {
