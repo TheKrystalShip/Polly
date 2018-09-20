@@ -1,10 +1,6 @@
-﻿using Discord;
+using Discord;
 using Discord.WebSocket;
 
-using Microsoft.Extensions.Configuration;
-
-using System;
-using System.IO;
 using System.Threading.Tasks;
 
 using TheKrystalShip.Configuration;
@@ -13,18 +9,14 @@ using TheKrystalShip.Polly.Handlers;
 
 namespace TheKrystalShip.Polly
 {
-    public class Program
+    public class Bot
     {
         private static DiscordSocketClient _client;
         private static CommandHandler _commandHandler;
         private static string _token;
 
-        public static async Task Main(string[] args)
+        public Bot()
         {
-            Console.Title = Settings.Instance.GetName();
-
-            _token = Settings.Instance.GetToken();
-
             _client = new DiscordSocketClient(new DiscordSocketConfig()
                 {
                     LogLevel = LogSeverity.Debug,
@@ -35,9 +27,13 @@ namespace TheKrystalShip.Polly
 
             _commandHandler = new CommandHandler(ref _client);
 
+            _token = Settings.Instance.GetToken();
+        }
+
+        public async Task InitAsync()
+        {
             await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();
-            await Task.Delay(-1);
         }
     }
 }
