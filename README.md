@@ -41,7 +41,7 @@ Navigate to the solution folder and execute this command using your prefered ter
 > dotnet build [-c Release]
 ```
 
-> Add `-r win-x64` at the end to produce and `Polly.exe` file alongside the generated `Polly.dll`
+> Add `-r win-x64` at the end to produce a `Polly.exe` file alongside the generated `Polly.dll`
 
 ### To run
 
