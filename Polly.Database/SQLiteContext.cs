@@ -1,7 +1,4 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 
 using TheKrystalShip.Polly.Database.Models;
 

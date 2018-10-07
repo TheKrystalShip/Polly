@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,7 @@ namespace TheKrystalShip.Polly.Handlers
                 }
             );
 
-            _commandService.AddModulesAsync(Assembly.GetEntryAssembly());
+            _commandService.AddModulesAsync(Assembly.GetEntryAssembly()).Wait();
 
             _services = new ServiceCollection()
                 .AddSingleton(_client)

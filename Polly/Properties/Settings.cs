@@ -1,5 +1,6 @@
-using System.IO;
 using Microsoft.Extensions.Configuration;
+
+using System.IO;
 
 namespace TheKrystalShip.Polly.Properties
 {
@@ -10,7 +11,8 @@ namespace TheKrystalShip.Polly.Properties
         public static IConfiguration Instance => _config ??
             (_config = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Properties"))
-                .AddJsonFile("settings.json", false, true)
+                .AddJsonFile("settings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("secrets.json", optional: false, reloadOnChange: true)
                 .Build());
     }
 }

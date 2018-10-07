@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 .vscode
 Polly/Properties/settings.json
+/Polly/Properties/secrets.json

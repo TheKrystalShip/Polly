@@ -1,10 +1,5 @@
 ﻿{
-  "Bot": {
-    "Name": "Polly",
-    "Token": "",
-    "PollChannel": ""
-  },
   "ConnectionStrings": {
-    "SQLite": ""
+    "SQLite": "Data source=Polly.db"
   }
 }
