@@ -32,11 +32,11 @@ namespace TheKrystalShip.Polly.Handlers
             _client = client;
 
             _commandService = new CommandService(new CommandServiceConfig()
-                {
-                    LogLevel = LogSeverity.Debug,
-                    CaseSensitiveCommands = false,
-                    DefaultRunMode = RunMode.Async
-                }
+            {
+                LogLevel = LogSeverity.Debug,
+                CaseSensitiveCommands = false,
+                DefaultRunMode = RunMode.Async
+            }
             );
 
             _commandService.AddModulesAsync(Assembly.GetEntryAssembly()).Wait();
@@ -46,7 +46,8 @@ namespace TheKrystalShip.Polly.Handlers
                 .AddSingleton(_commandService)
                 .AddManagers()
                 .AddServices()
-                .AddDbContext<SQLiteContext>(x => {
+                .AddDbContext<SQLiteContext>(x =>
+                {
                     x.UseSqlite(Settings.Instance.GetConnectionString("SQLite"));
                 })
                 .AddLogger()
